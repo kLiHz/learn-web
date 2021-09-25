@@ -1,10 +1,10 @@
-# mdBook 模板
+# Web 学习
 
-该内容使用 [mdBook][mdbook] 构建 HTML 页面。
-
-请修改根目录下的 `book.toml` 文件。
+Web 学习记录。
 
 ## 使用说明
+
+该内容使用 [mdBook][mdbook] 构建 HTML 页面。
 
 - 下载 [mdBook][mdbook] 二进制文件，将路径添加进 `PATH` 环境变量；
 - 切换到项目根目录，执行 `mdbook serve` 命令；

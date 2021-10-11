@@ -7,5 +7,7 @@
 
 [前言](./README.md)
 
-- [HTML 介绍](./html-intro/README.md)
-    - [HTML 标签](./html-intro/tags.md)
+- [HTML 介绍](./html/intro/README.md)
+    - [HTML 标签](./html/intro/tags.md)
+
+- [为 HTML 应用样式](./html/styling/README.md)

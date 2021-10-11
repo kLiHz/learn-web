@@ -1,0 +1,28 @@
+<table>
+    <thead>
+        <!-- 因为 Name 这一表头将会占用两行，所以 thead 标签下有两个 tr。-->
+        <tr>
+            <!-- 而 Person ID 只是单一表头，为了凑齐两行，需要扩展为 2 行（row） -->
+            <!-- Name 下有 2 个子表头，因此扩展 2 列（column） -->
+            <th colspan="2">Name</th>
+            <th rowspan="2">Person ID</th>
+        </tr>
+        <tr>
+            <th>First</th>
+            <th>Last</th>
+            <!-- 由于上一行的 Person ID 已经扩展到下一行，因此无需再声明占位的单元格 -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Henry</td>
+            <td>Wood</td>
+            <td>001</td>
+        </tr>
+        <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>002</td>
+        </tr>
+    </tbody>
+</table>

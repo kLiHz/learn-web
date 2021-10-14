@@ -1,4 +1,4 @@
-# HTML 标签
+# HTML 元素
 
 我们可以使用 HTML 标签（以及他们之间的嵌套）标记想要展示的内容。
 
@@ -6,10 +6,10 @@
 
 可以使用从 `<h1>` 到 `<h6>` 的标签来标记标题 1 ~ 6 级标题，使用 `<p>` 来标记一个段落。
 
-[example.html](./example.html)
+[../example.html](../example.html)
 
 ```html
-{{#include example.html}}
+{{#include ../example.html}}
 ```
 
 ## 列表

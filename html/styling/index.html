@@ -25,8 +25,6 @@
         <link rel="stylesheet" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        <!-- MathJax -->
-        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -77,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">前言</a></li><li class="chapter-item expanded "><a href="../../html/intro/index.html"><strong aria-hidden="true">1.</strong> HTML 介绍</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../html/intro/tags.html"><strong aria-hidden="true">1.1.</strong> HTML 标签</a></li></ol></li><li class="chapter-item expanded "><a href="../../html/styling/index.html" class="active"><strong aria-hidden="true">2.</strong> 为 HTML 应用样式</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">前言</a></li><li class="chapter-item expanded "><a href="../../html/index.html"><strong aria-hidden="true">1.</strong> HTML 介绍</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../html/elements/index.html"><strong aria-hidden="true">1.1.</strong> HTML 元素</a></li><li class="chapter-item expanded "><a href="../../html/styling/index.html" class="active"><strong aria-hidden="true">1.2.</strong> 为 HTML 应用样式</a></li></ol></li><li class="chapter-item expanded "><a href="../../js/index.html"><strong aria-hidden="true">2.</strong> JavaScript 介绍</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../js/callback/index.html"><strong aria-hidden="true">2.1.</strong> 回调函数</a></li><li class="chapter-item expanded "><a href="../../js/load-json/index.html"><strong aria-hidden="true">2.2.</strong> JavaScript 加载 JSON</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,27 +140,22 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="应用样式"><a class="header" href="#应用样式">应用样式</a></h1>
+                        <h1 id="为-html-应用样式"><a class="header" href="#为-html-应用样式">为 HTML 应用样式</a></h1>
 <p>使用 CSS 可以对 HTML 文档中的元素或者指定 <code>id</code> 属性的元素进行选择，并为他们应用样式。</p>
 <p>CSS 是“层叠样式表”的英文缩写。</p>
-<p><a href="./example.html">example.html</a></p>
+<p>可以以内嵌（internal）方式为 HTML 加入 CSS 文件。</p>
+<p><a href="./styling-example-1.html">styling-example-1.html</a></p>
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
+&lt;html lang=&quot;en&quot;&gt;
 
 &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
     &lt;title&gt;HTML Styling Example&lt;/title&gt;
     &lt;style&gt;
-        body {
-            background-color: powderblue;
-        }
-        
-        h1 {
-            color: blue;
-        }
-        
-        p {
-            color: red;
-        }
+        body { background-color: powderblue; }
+        h1 { color: blue; }
+        p { color: red; }
     &lt;/style&gt;
 &lt;/head&gt;
 
@@ -173,13 +166,52 @@
 
 &lt;/html&gt;
 </code></pre>
+<p>亦可以外部链接的方式链接 CSS 文件。</p>
+<p><a href="./styling-example-2.html">styling-example-2.html</a></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css-example.css&quot;&gt;
+    &lt;title&gt;HTML Styling Example&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;This is a heading&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+<p><a href="css-example.css">css-example.css</a></p>
+<pre><code class="language-css">body {
+    background-color: powderblue;
+}
+
+h1 {
+    color: blue;
+}
+
+p {
+    color: red;
+}
+</code></pre>
+<p>也可以使用行间（inline）方式，为单个元素添加样式：</p>
+<pre><code class="language-html">&lt;p style=&quot;color:blue;text-align:center;&quot;&gt;This is a paragraph.&lt;/p&gt;
+</code></pre>
+<p>如果存在多个样式表文件，则优先使用行间/内联的样式，之后使用声明在 <code>&lt;head&gt;</code> 区的（在后面引入/定义会覆盖之前的相同设定）。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../html/intro/tags.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../html/elements/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../../js/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
                     </nav>
@@ -187,8 +219,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../html/intro/tags.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../html/elements/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../../js/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 

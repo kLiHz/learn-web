@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>HTML 介绍 - Web 学习</title>
+        <title>JavaScript 加载 JSON - Web 学习</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -25,8 +25,6 @@
         <link rel="stylesheet" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        <!-- MathJax -->
-        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -77,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">前言</a></li><li class="chapter-item expanded "><a href="../../html/intro/index.html" class="active"><strong aria-hidden="true">1.</strong> HTML 介绍</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../html/intro/tags.html"><strong aria-hidden="true">1.1.</strong> HTML 标签</a></li></ol></li><li class="chapter-item expanded "><a href="../../html/styling/index.html"><strong aria-hidden="true">2.</strong> 为 HTML 应用样式</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">前言</a></li><li class="chapter-item expanded "><a href="../../html/index.html"><strong aria-hidden="true">1.</strong> HTML 介绍</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../html/elements/index.html"><strong aria-hidden="true">1.1.</strong> HTML 元素</a></li><li class="chapter-item expanded "><a href="../../html/styling/index.html"><strong aria-hidden="true">1.2.</strong> 为 HTML 应用样式</a></li></ol></li><li class="chapter-item expanded "><a href="../../js/index.html"><strong aria-hidden="true">2.</strong> JavaScript 介绍</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../js/callback/index.html"><strong aria-hidden="true">2.1.</strong> 回调函数</a></li><li class="chapter-item expanded "><a href="../../js/load-json/index.html" class="active"><strong aria-hidden="true">2.2.</strong> JavaScript 加载 JSON</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -115,7 +113,7 @@
                         <a href="https://github.com/tsagaanbar/learn-web" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/tsagaanbar/learn-web/edit/main/src/html/intro/README.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/tsagaanbar/learn-web/edit/main/src/js/load-json/README.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
                     </div>
@@ -142,46 +140,105 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="html"><a class="header" href="#html">HTML</a></h1>
-<p>HTML 即 <strong>H</strong>yperText <strong>M</strong>arkup <strong>L</strong>anguage 的缩写，意为“超文本标记语言”。</p>
-<p>该语言使用一套标签来描述网页。HTML 页面一般需要由浏览器渲染出来，以供用户阅读。</p>
-<h2 id="html-概览"><a class="header" href="#html-概览">HTML 概览</a></h2>
-<p>一个 HTML 文件的结构大概如下所示：</p>
+                        <h1 id="javascript-加载-json"><a class="header" href="#javascript-加载-json">JavaScript 加载 JSON</a></h1>
+<p>假设有下面这样的 JSON 文件：</p>
+<p><a href="./fruits/fruits.json">fruits/fruits.json</a></p>
+<pre><code class="language-json">{
+	&quot;fruits&quot;: [
+		{
+			&quot;name&quot;: &quot;apple&quot;,
+			&quot;color&quot;: &quot;red&quot;
+		},
+		{
+			&quot;name&quot;: &quot;banana&quot;,
+			&quot;color&quot;: &quot;yellow&quot;
+		},
+		{
+			&quot;name&quot;: &quot;cherries&quot;,
+			&quot;color&quot;: &quot;red&quot;
+		}
+	]
+}
+</code></pre>
+<p>在 HTML 页面上有一按钮，点击后即可加载数据到 HTML 页面上的表格。</p>
+<p>HTML 页面如下：</p>
+<p><a href="./fruits/index.html">fruits/index.html</a> （最终效果）</p>
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;title&gt;Page Title&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;stylesheet.css&quot;&gt;
+    &lt;title&gt;Fruit List&lt;/title&gt;
 &lt;/head&gt;
 
 &lt;body&gt;
-    &lt;h1&gt;Heading&lt;/h1&gt;
-    &lt;p&gt;This is a paragraph.&lt;/p&gt;
-    &lt;a href=&quot;./list-example.html&quot;&gt;Link to ./list-example.html&lt;/a&gt;
+    &lt;h1&gt;Fruits&lt;/h1&gt;
+    &lt;button onclick=&quot;loadFruits()&quot;&gt;Load Fruits&lt;/button&gt;
+    &lt;table id=&quot;fruits_table&quot;&gt;&lt;/table&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;load-fruits.js&quot; defer&gt;&lt;/script&gt;
 &lt;/body&gt;
 
 &lt;/html&gt;
 </code></pre>
-<p>如果读者正在浏览器中浏览这个内容，可以 <a href="./example.html">点击这里查看上面这段 HTML 在浏览器中的展示效果</a>。</p>
-<blockquote>
-<p>事实上，读者现在所阅读的页面本身也是一份 HTML 文档，只不过添加了一些样式与功能，因此展示效果会比上述的示例更为精美。</p>
-</blockquote>
-<p>观察上述内容可以发现，许多内容都被一对标签（如 <code>&lt;p&gt;</code> 和 <code>&lt;/p&gt;</code>）包裹在其中。一对标签中也可以嵌套包含其他的标签对。这种嵌套的方式实际上形成了一种树形的结构。</p>
-<p>最开始的 <code>&lt;!DOCTYPE html&gt;</code> 用来声明文件类型。之后，所有的内容放在一对 <code>&lt;html&gt;</code> 标签里。这其中又有 <code>&lt;head&gt;</code> 和 <code>&lt;body&gt;</code> 两个部分，分别用来描述 HTML 文件的元信息和文档的主题内容。</p>
-<p>HTML 文件是以纯文本形式在计算机中存储的，可以使用任意文本编辑器进行编辑。不过，由于有众多标签，一般需要借助专用编辑工具的自动补全功能来快速完成输入。</p>
-<p>在桌面浏览器中，用户可以右键网页空白处，选择“查看源代码”，即可阅读 HTML 文档的内容。如果用户对页面上某个元素（如段落、列表、表格、图片等）感兴趣，亦可右键该元素，选择“检查元素”，即可定位到对应的 HTML 代码处。</p>
+<p>JavaScrpt: </p>
+<p><a href="./fruits/load-fruits.js">fruits/load-fruits.js</a> </p>
+<pre><code class="language-javascript">var fruitsJSON = `{
+	&quot;fruits&quot;: [
+		{
+			&quot;name&quot;: &quot;apple&quot;,
+			&quot;color&quot;: &quot;red&quot;
+		},
+		{
+			&quot;name&quot;: &quot;banana&quot;,
+			&quot;color&quot;: &quot;yellow&quot;
+		},
+		{
+			&quot;name&quot;: &quot;cherries&quot;,
+			&quot;color&quot;: &quot;red&quot;
+		}
+	]
+}`;
+
+var fruitsData = JSON.parse(fruitsJSON);
+
+const fruitsTableHeader = '&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Color&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;';
+
+function loadFruits(){
+    
+    var fruitTableBody = &quot;&lt;tbody&gt;&quot;;
+    fruitsData.fruits.forEach(fruit =&gt; {
+        var fruitRow = '&lt;tr&gt;';
+        fruitRow += '&lt;td&gt;' + fruit.name + '&lt;/td&gt;';
+        fruitRow += '&lt;td&gt;' + fruit.color + '&lt;/td&gt;';
+        fruitRow += '&lt;/tr&gt;';
+        fruitTableBody += fruitRow;
+    });
+    fruitTableBody += '&lt;/tbody&gt;';
+    
+    document.getElementById(&quot;fruits_table&quot;).innerHTML = fruitsTableHeader + fruitTableBody;
+}
+</code></pre>
+<p>CSS:</p>
+<p><a href="./fruits/stylesheet.css">fruits/stylesheet.css</a></p>
+<pre><code class="language-css">table, th, td {
+    padding: 3px 20px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+</code></pre>
+<hr />
+<p>下面是一个内容更复杂的 JSON 文件：<a href="./pets/pets.json">pets/pets.json</a></p>
+<p>以及对应的 JavaScript：<a href="./pets/load-pets.js">pets/load-pets.js</a></p>
+<p>最终结果：<a href="./pets/index.html">pets/index.html</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../js/callback/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a rel="next" href="../../html/intro/tags.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
                     </nav>
@@ -189,11 +246,8 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../js/callback/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a rel="next" href="../../html/intro/tags.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
